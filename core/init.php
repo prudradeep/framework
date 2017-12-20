@@ -44,16 +44,21 @@ class Init{
 	* Set pre-required settings.
 	*/
 	private function prerequisites(){
-		if(MODE=='DEVELOPMENT' || MODE=='MAINTENANCE'){
+		if(MODE=='DEVELOPMENT'){
+			error_reporting(-1);
 			@ini_set('display_errors',1);
-			error_reporting(E_ALL);
 			@ini_set('max_execution_time', 0);
 			@ini_set('session.gc_maxlifetime',7200);
 		}
 		else if(MODE=='PRODUCTION'){
-			@ini_set('display_errors',0);
+			@ini_set('display_errors', 0);
+			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
 			@ini_set('max_execution_time', MAX_EXE_TIME);
 			@ini_set('session.gc_maxlifetime',SESSION_LIFE);
+		}else{
+			header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+			echo 'Phindart application environment is not set correctly.';
+			exit(1);
 		}
 
 		// set default timezone
