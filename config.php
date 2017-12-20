@@ -22,9 +22,9 @@ $userConfig=array(
 	'BASE'=>'http://localhost/framework/',
 	'SESSION_LIFE'=>'1800',
 	'MAX_EXE_TIME'=>300,
-	'MODE'=>'DEVELOPMENT', //DEVELOPMENT, PRODUCTION, MAINTENANCE
+	'MODE'=>'DEVELOPMENT', //DEVELOPMENT, PRODUCTION
 	'THEME'=>'phindart',
-	'SESSION_KEY'=>'framework_user',
-	'SESSION_USER'=>'framework_usertype',
+	'SESSION_KEY'=>'phindart_user',
+	'SESSION_USER'=>'phindart_usertype',
 	'DEFAULT_COMP'=>'home'
 );
