@@ -25,9 +25,9 @@ class Query extends Prepare{
 		global $Helper;
 		$this->helper = $Helper;
 		if($this->table==NULL && $this::$dynatable!=NULL){ //Model class not exist check
-			$this->table = $this::$dynatable;
+			$this->table = DB_PREFIX.$this::$dynatable;
 		}else if($this->table==NULL){
-			$this->table = strtolower(get_class($this));
+			$this->table = DB_PREFIX.strtolower(get_class($this));
 		}
 		if($this->fetchMode==NULL){
 			$this->fetchMode = PDO::FETCH_ASSOC;
@@ -347,132 +347,7 @@ class Query extends Prepare{
     	}
     	$pager .= "</ul>";
     	return $pager;
-	}
-	
-
-	/*
-	* Data Insertion: Insert, InsertSelect, InsertDuplicateKeyUpdate, Replace, LoadDataInfile
-	* INSERT [LOW_PRIORITY | HIGH_PRIORITY] [IGNORE]
-	    [INTO] tbl_name
-	    [PARTITION (partition_name,...)]
-	    [(col_name,...)]
-	    SELECT ...
-	    [ ON DUPLICATE KEY UPDATE col_name=expr, ... ]
-	* REPLACE [LOW_PRIORITY | DELAYED]
-	    [INTO] tbl_name
-	    [PARTITION (partition_name,...)]
-	    [(col_name,...)]
-	    {VALUES | VALUE} ({expr | DEFAULT},...),(...),...
-	* LOAD DATA [LOW_PRIORITY | CONCURRENT] [LOCAL] INFILE 'file_name'
-	    [REPLACE | IGNORE]
-	    INTO TABLE tbl_name
-	    [PARTITION (partition_name,...)]
-	    [CHARACTER SET charset_name]
-	    [{FIELDS | COLUMNS}
-	        [TERMINATED BY 'string']
-	        [[OPTIONALLY] ENCLOSED BY 'char']
-	        [ESCAPED BY 'char']
-	    ]
-	    [LINES
-	        [STARTING BY 'string']
-	        [TERMINATED BY 'string']
-	    ]
-	    [IGNORE number {LINES | ROWS}]
-	    [(col_name_or_user_var,...)]
-	    [SET col_name = expr,...]
-	*/
-
-	/*
-	* Data Deletion: Delete
-	* DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name
-	    [PARTITION (partition_name,...)]
-	    [WHERE where_condition]
-	    [ORDER BY ...]
-	    [LIMIT row_count]
-	*/
-
-	/*
-	* Data Updation: Update
-	* UPDATE [LOW_PRIORITY] [IGNORE] table_reference
-	    SET col_name1={expr1|DEFAULT} [, col_name2={expr2|DEFAULT}] ...
-	    [WHERE where_condition]
-	    [ORDER BY ...]
-	    [LIMIT row_count]
-	* UPDATE [LOW_PRIORITY] [IGNORE] table_references
-	    SET col_name1={expr1|DEFAULT} [, col_name2={expr2|DEFAULT}] ...
-	    [WHERE where_condition]
-	*/	 
-
-	/*
-	* Data Selection: Select
-	* SELECT
-	    [ALL | DISTINCT | DISTINCTROW ]
-	      [HIGH_PRIORITY]
-	      [STRAIGHT_JOIN]
-	      [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]
-	      [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]
-	    select_expr [, select_expr ...]
-	    [FROM table_references
-	      [PARTITION partition_list]
-	    [WHERE where_condition]
-	    [GROUP BY {col_name | expr | position}
-	      [ASC | DESC], ... [WITH ROLLUP]]
-	    [HAVING where_condition]
-	    [ORDER BY {col_name | expr | position}
-	      [ASC | DESC], ...]
-	    [LIMIT {[offset,] row_count | row_count OFFSET offset}]
-	    [PROCEDURE procedure_name(argument_list)]
-	    [INTO OUTFILE 'file_name'
-	        [CHARACTER SET charset_name]
-	        export_options
-	      | INTO DUMPFILE 'file_name'
-	      | INTO var_name [, var_name]]
-	    [FOR UPDATE | LOCK IN SHARE MODE]]
-	* SELECT ...
-		UNION [ALL | DISTINCT] SELECT ...
-		[UNION [ALL | DISTINCT] SELECT ...]
-	* table_references:
-		    escaped_table_reference [, escaped_table_reference] ...
-
-		escaped_table_reference:
-		    table_reference
-		  | { OJ table_reference }
-
-		table_reference:
-		    table_factor
-		  | join_table
-
-		table_factor:
-		    tbl_name [PARTITION (partition_names)]
-		        [[AS] alias] [index_hint_list]
-		  | table_subquery [AS] alias
-		  | ( table_references )
-
-		join_table:
-		    table_reference [INNER | CROSS] JOIN table_factor [join_condition]
-		  | table_reference STRAIGHT_JOIN table_factor
-		  | table_reference STRAIGHT_JOIN table_factor ON conditional_expr
-		  | table_reference {LEFT|RIGHT} [OUTER] JOIN table_reference join_condition
-		  | table_reference NATURAL [{LEFT|RIGHT} [OUTER]] JOIN table_factor
-
-		join_condition:
-		    ON conditional_expr
-		  | USING (column_list)
-
-		index_hint_list:
-		    index_hint [, index_hint] ...
-
-		index_hint:
-		    USE {INDEX|KEY}
-		      [FOR {JOIN|ORDER BY|GROUP BY}] ([index_list])
-		  | IGNORE {INDEX|KEY}
-		      [FOR {JOIN|ORDER BY|GROUP BY}] (index_list)
-		  | FORCE {INDEX|KEY}
-		      [FOR {JOIN|ORDER BY|GROUP BY}] (index_list)
-
-		index_list:
-		    index_name [, index_name] ...
-	*/   
+	}   
 
 	function __destruct(){}
 }
