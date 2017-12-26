@@ -17,6 +17,7 @@ $userConfig=array(
 	'DB_USER'=>'', //Not Required if sqlite
 	'DB_PASS'=>'', //Not Required if sqlite,
 	'DB_BASE'=>'',
+	'DB_PREFIX'=>'',
 // Database configurations ends
 	'TIMEZONE'=>'Asia/Kolkata',
 	'BASE'=>'http://localhost/framework/',
