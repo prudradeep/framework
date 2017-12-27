@@ -84,7 +84,7 @@ class Query extends Prepare{
 				$match[3] = $match[2];
 			} 
 			else $alias = " As $match[3]";
-			$this->query['join'][$join[$match[1]]][$match[2].$alias]="$match[0].$arguments[0] ".$where[$arguments[1]]." $match[3].".$arguments[2];
+			$this->query['join'][$join[$match[1]]][DB_PREFIX.$match[2].$alias]="$match[0].$arguments[0] ".$where[$arguments[1]]." $match[3].".$arguments[2];
 		}
 		else
 			$this->helper->showError($match[1].' Not Valid function');
