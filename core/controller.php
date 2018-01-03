@@ -72,10 +72,7 @@ class Controller{
 	protected function component($comp, $ctrl=false, $mtd=false, $param=[]){
 		if(!$ctrl || $ctrl=='') $ctrl = $comp;
 		if(!$mtd || $mtd=='') $mtd = DEFAULT_METHOD;
-		//Check access
-		if(CHECK_ACCESS && !self::checkAccess($comp, $ctrl, $mtd))
-			return;
-
+		
 		$param['frame_id'] = $this->compid;
 		$this->route = new Route;
 		$this->route->main();
