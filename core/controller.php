@@ -56,8 +56,8 @@ class Controller{
 	* $data: Data for view (Optional)
 	*/
 	protected function loadView($view, $data=[]){
-		if(file_exists(THEME_PATH.DS.THEME.DS.$view.'.php'))
-			require_once THEME_PATH.DS.THEME.DS.$view.'.php';
+		if(file_exists(BASE_DIR.DS.THEME_PATH.DS.THEME.DS.$view.'.php'))
+			require_once BASE_DIR.DS.THEME_PATH.DS.THEME.DS.$view.'.php';
 		else
 			$this->helper->showError('Theme "'.$view."\" view doesn't exists in theme ".THEME);
 	}
