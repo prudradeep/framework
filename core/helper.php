@@ -22,6 +22,10 @@ class Helper{
 	* $model: Model file name
 	*/
 	public static function model($model){
+		if(!DB_ENABLED){
+			self::showError("Enable & configuer DB first to use this!");
+			exit;
+		}
 		if(file_exists(MODELS_PATH.DS.$model.'.php')){
 			require_once MODELS_PATH.DS.$model.'.php';
 			return new $model;
