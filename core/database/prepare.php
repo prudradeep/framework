@@ -167,7 +167,12 @@ class Prepare{
 		$this->sql .= ' WHERE ';
 		foreach ($this->query['where'] as $key => $value) {
 			$this->sql .= $value[0].' ';
-			$this->params[]=$value[1];
+			if(is_array($value[1])){
+				foreach ($value[1] as $k => $v) {
+					$this->params[] = $v;
+				}
+			}else
+				$this->params[]=$value[1];
 		}
 		unset($this->query['where']);
 	}
