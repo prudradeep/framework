@@ -231,7 +231,7 @@ class Prepare{
 	private function prepared(){
 		global $DB;
 		try{
-			$this->statement = $DB->prepare(strtolower($this->sql));
+			$this->statement = $DB->prepare($this->sql);
 		}catch(Exception $e){
 			throw new Exception($e->errorInfo[2], $e->errorInfo[1], $e);
 		}
