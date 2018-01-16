@@ -320,33 +320,8 @@ class Query extends Prepare{
 		return $this->statement;
 	}
 
-	public function getPages($page=1,$url='.'){
-		$pager = '';
-		if($page>$this->pages)
-			$page=$this->pages;
-		$pager = "<ul class='pagination right'>";
-		if($page!=1){
-			$pager .= "<li class='waves-effect'><a href='$url/".($page-1)."'><i class='large material-icons'>chevron_left</i></a></li>";
-    	}
-    	for ($i=1; $i <= $this->pages; $i++) {
-    		if($i==$page){
-    			$pager .= "<li class='active'><a href='$url/$i'>{$i}</a></li>";
-    		}
-	    	else if(($i==$page-3 && $i!=1) || ($i==$page+3 && $i!=$this->pages))
-	    		$pager .= "<span class='item spaces'>...</span>";
-    		else if( ($i < $page && $i>=($page-2) ) || ( $i > $page && $i<=($page+2))){    			
-    			$pager .= "<li class='waves-effect'><a href='$url/$i'>{$i}</a></li>";
-    		}
-    		else if($i>3 && $i<=($this->pages-3))
-	    		continue;
-    		else
-    			$pager .= "<li class='waves-effect'><a href='$url/$i'>{$i}</a></li>";
-    	}
-    	if($page!=$this->pages){
-	    	$pager .= "<li class='waves-effect'><a href='$url/".($page+1)."'><i class='large material-icons'>chevron_right</i></a></li>";
-    	}
-    	$pager .= "</ul>";
-    	return $pager;
+	public function getPages(){
+		return $this->pages;
 	}   
 
 	function __destruct(){}
